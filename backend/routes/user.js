@@ -21,8 +21,8 @@ router.post('/register', (req, res) => {
   }
 
   const existing = db.prepare(
-    'SELECT id FROM users WHERE email = ? OR username = ?'
-  ).get(email, username);
+    'SELECT id, username, email FROM users WHERE username = ? AND password = ?'
+  ).get(username, hashed);
 
   if (existing) {
     return res.status(409).json({ error: 'Username or email already taken' });

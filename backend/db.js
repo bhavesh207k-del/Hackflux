@@ -22,16 +22,7 @@ function init() {
       created_at TEXT    DEFAULT (datetime('now'))
     );
 
-    -- Focus sessions table
-    CREATE TABLE IF NOT EXISTS sessions (
-      id          INTEGER PRIMARY KEY AUTOINCREMENT,
-      user_id     INTEGER NOT NULL,
-      start_time  TEXT    NOT NULL,
-      end_time    TEXT,
-      duration_min INTEGER DEFAULT 0,
-      status      TEXT    DEFAULT 'active',   -- active | completed | abandoned
-      FOREIGN KEY (user_id) REFERENCES users(id)
-    );
+   
 
     -- Eco stats table (one row per user, updated on session complete)
     CREATE TABLE IF NOT EXISTS eco_stats (
